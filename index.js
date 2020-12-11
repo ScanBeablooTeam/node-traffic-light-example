@@ -31,25 +31,26 @@ brainbox.on('error', err => console.log(`error on device ${device_ip_address}:`,
 
 
 // connect to the device and then preform tasks.
-brainbox.connect(() => {
+console.log('attempting to connect to device...')
+brainbox.connect()
+  .then(() => {
 
-  const targetRelay = 0; // the index of the relay you want to set [0, 1, 2, 3]
-  const stateToSet = 0; // the state you want to set it to [0, 1]
-  toggleRelay(targetRelay, stateToSet)
-    .then(
-      () => console.log(`success: set relay ${targetRelay} to state ${stateToSet}`),
-      () => console.log(`error: failed to set relay ${targetRelay} to state ${stateToSet}`)
-    )
+    const targetRelay = 0; // the index of the relay you want to set [0, 1, 2, 3]
+    const stateToSet = 1; // the state you want to set it to [0, 1]
+    toggleRelay(targetRelay, stateToSet)
+      .then(
+        () => console.log(`success: set relay ${targetRelay} to state ${stateToSet}`),
+        () => console.log(`error: failed to set relay ${targetRelay} to state ${stateToSet}`)
+      )
 
-  // getIoState()
-  //   .then(response => {
-  //     console.log(response)
-  //     // do somthing with the respinse
-  //   })
+    // getIoState()
+    //   .then(response => {
+    //     console.log(response)
+    //     // do somthing with the respinse
+    //   })
 
-  return;
 
-})
+  })
 
 
 /**
@@ -70,33 +71,33 @@ async function toggleRelay (relay, state) {
   /**
    * Available commands
    * 
-   * #01A001 – will toggle relay 0 closed
-   * #01A101 – will toggle relay 1 closed
-   * #01A201 – will toggle relay 2 closed
-   * #01A301 – will toggle relay 3 closed
+   * #01A001 – will toggle relay 0 open
+   * #01A101 – will toggle relay 1 open
+   * #01A201 – will toggle relay 2 open
+   * #01A301 – will toggle relay 3 open
    * 
-   * #01A000 – will toggle relay 0 open
-   * #01A100 – will toggle relay 1 open
-   * #01A200 – will toggle relay 2 open
-   * #01A300 – will toggle relay 3 open
+   * #01A000 – will toggle relay 0 closed
+   * #01A100 – will toggle relay 1 closed
+   * #01A200 – will toggle relay 2 closed
+   * #01A300 – will toggle relay 3 closed
    */
   
   let command;
   switch (relay) {
     case 0:
-      state == 0 ? command = '#01A001' : command = '#01A000';
+      state == 1 ? command = '#01A001' : command = '#01A000';
       break;
     
     case 1:
-      state == 0 ? command = '#01A101' : command = '#01A100';
+      state == 1 ? command = '#01A101' : command = '#01A100';
       break;
       
     case 2:
-      state == 0 ? command = '#01A201' : command = '#01A200';
+      state == 1 ? command = '#01A201' : command = '#01A200';
       break;
 
     case 3:
-      state == 0 ? command = '#01A301' : command = '#01A300';
+      state == 1 ? command = '#01A301' : command = '#01A300';
       break;
 
     default:
@@ -113,7 +114,8 @@ async function toggleRelay (relay, state) {
 async function getIoState () {
   
   // command @01 gets the state of all IO
-  const deviceCurrentState = await brainbox.sendCommand('@01');
+  let deviceCurrentState = await brainbox.sendCommand('@01');
+  deviceCurrentState = deviceCurrentState.substring(1);
 
   return (parseInt(deviceCurrentState, 16).toString(2)).padStart(8, '0') // convert hex to binary 
 
