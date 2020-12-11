@@ -28,6 +28,6 @@ getIoState()
 NOTE:
 We found that if all relays are off it will return `11111111` or `00000000` (8 bytes) depending on the state of Dln lines. This will not include the relays since they are all off.
 
-If any of the relays are on then you will recive 12 bytes. The first 4 bytes are the relays. 
-`100011111111` < in this example relay 0 is set to 1
+If any of the relays are on then you will recive 12 bytes. The first 4 bytes are the relays. <br />
+`100011111111` < in this example relay 0 is set to 1 <br />
 `101011111111` < in this example relays 0 and 2 are set to 1
