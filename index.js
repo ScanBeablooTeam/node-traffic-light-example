@@ -4,7 +4,7 @@
 const { EDDevice } = require('@brainboxes/io');
 
 
-const device_ip_address = '80.3.134.131'; // the ip of the device you want to connect to (works with port forwarding: must edit the port in npm module)
+const device_ip_address = 'DEVICE_IP_ADRESS'; // the ip of the device you want to connect to (works with port forwarding: must edit the port in npm module)
 
 // define a new device
 const brainbox = new EDDevice(device_ip_address, 8, 8);
