@@ -1,0 +1,22 @@
+{
+  "name": "traffic-light-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScanBeablooTeam/node-traffic-light-example.git"
+  },
+  "author": "Robert W",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ScanBeablooTeam/node-traffic-light-example/issues"
+  },
+  "homepage": "https://github.com/ScanBeablooTeam/node-traffic-light-example#readme",
+  "dependencies": {
+    "@brainboxes/io": "^0.9.1"
+  }
+}
