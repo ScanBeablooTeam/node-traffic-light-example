@@ -11,7 +11,7 @@ Runs the index file with the code you have commented / uncommented
 
 ### Fucntions in this script
 
-To set a replay to on or off you can use:
+To set a relay to on or off you can use:
 ```javascript
 toggleRelay(0, 1) // turn relay 0 on
 ```
